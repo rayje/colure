@@ -5,7 +5,8 @@
             [hiccup.middleware :refer [wrap-base-url]]
             [compojure.handler :as handler]
             [compojure.route :as route]
-            [colure.routes.home :refer [home-routes]]))
+            [colure.routes.home :refer [home-routes]]
+            [colure.routes.post :refer [post-routes]]))
 
 (defn init []
   (println "colure is starting"))
@@ -18,6 +19,6 @@
   (route/not-found "Not Found"))
 
 (def app
-  (-> (routes home-routes app-routes)
+  (-> (routes post-routes home-routes app-routes)
       (handler/site)
       (wrap-base-url)))
